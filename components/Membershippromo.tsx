@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react";
 import { LuGift } from "react-icons/lu";
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
