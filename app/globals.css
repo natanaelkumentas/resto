@@ -1,26 +1,16 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html{
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-base: #FF9A00;
 }
 
 body {
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.base-color{
-  color: #FF9A00;
-}
-
-.bg-base-color{
-  background-color: #FF9A00;
+.base-color {
+  color: var(--color-base);
 }
