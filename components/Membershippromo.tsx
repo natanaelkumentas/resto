@@ -59,7 +59,7 @@ function Membershippromo() {
           <div className="relative hidden md:block">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/image/img.jpg"
+                src="/image/img1.jpg"
                 alt="Restaurant"
                 width={600}
                 height={600}
