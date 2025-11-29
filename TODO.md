@@ -1,0 +1,3 @@
+- [ ] Update import statement in app/login/page.tsx to include React
+- [ ] Add type annotation to handleLogin function parameter
+- [ ] Add type annotation to handleRegister function parameter
