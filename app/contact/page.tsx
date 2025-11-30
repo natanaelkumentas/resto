@@ -11,6 +11,7 @@ import {
 import { IoSend } from "react-icons/io5";
 import { FaRegMessage } from "react-icons/fa6";
 import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function ContactPage() {
     const [name, setName] = useState("");
@@ -71,6 +72,7 @@ export default function ContactPage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Navbar />
             {/* HERO */}
             <section className="bg-linear-to-br from-orange-50 to-red-50 py-16">
                 <div className="container mx-auto px-4 text-center max-w-3xl">
