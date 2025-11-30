@@ -196,7 +196,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* QUICK NOTE */}
-                    <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 mt-8 shadow">
+                    <div className="bg-linear-to-br from-orange-50 to-red-50 rounded-xl p-6 mt-8 shadow">
                         <div className="flex gap-3">
                             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
                                 <FaRegMessage className="text-[#FF7A00] w-5 h-5" />
