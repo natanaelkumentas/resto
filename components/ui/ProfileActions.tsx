@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPencilAlt, FaSignOutAlt } from "react-icons/fa"
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaSignOutAlt } from "react-icons/fa"
 
 function ProfileActions() {
     const router = useRouter();
@@ -47,7 +47,7 @@ function ProfileActions() {
             {/* Action Buttons */}
             <div className="space-y-2">
                 <button 
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/auth")}
                 className="w-full border border-slate-200 rounded-lg py-3 px-4 font-semibold text-red-500 hover:bg-red-50 transition flex items-center justify-center gap-2">
                     <FaSignOutAlt className="text-red-500" size={18} />
                     Logout
