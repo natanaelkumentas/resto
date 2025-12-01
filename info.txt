@@ -1,0 +1,122 @@
+-- 1️⃣ MEMBERSHIP TABLE
+CREATE TABLE membership (
+    membership_id SERIAL PRIMARY KEY,
+    membership_name VARCHAR(50),
+    membership_price DECIMAL(10,2),
+    membership_discount_percent INT,
+    membership_duration_days INT,
+    membership_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2️⃣ USERS TABLE
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    user_name VARCHAR(100),
+    user_email VARCHAR(100) NOT NULL UNIQUE,
+    user_password VARCHAR(255),
+    user_role VARCHAR(20),
+    user_phone VARCHAR(20),
+    user_address TEXT,
+    membership_id INT,
+    user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_membership
+        FOREIGN KEY (membership_id)
+        REFERENCES membership(membership_id)
+);
+
+-- 3️⃣ ADMIN LOGS
+CREATE TABLE admin_logs (
+    log_id SERIAL PRIMARY KEY,
+    log_admin_id INT,
+    log_action VARCHAR(255),
+    log_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_log_admin
+        FOREIGN KEY (log_admin_id)
+        REFERENCES users(user_id)
+);
+
+-- 4️⃣ MENU ITEMS TABLE
+CREATE TABLE menu_items (
+    menu_id SERIAL PRIMARY KEY,
+    menu_name VARCHAR(100),
+    menu_description TEXT,
+    menu_price DECIMAL(10,2),
+    menu_category VARCHAR(50),
+    menu_stock INT,
+    menu_image_url TEXT,
+    menu_available BOOLEAN DEFAULT TRUE,
+    menu_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5️⃣ RATINGS TABLE
+CREATE TABLE ratings (
+    rating_id SERIAL PRIMARY KEY,
+    rating_user_id INT,
+    rating_menu_id INT,
+    rating_value INT,
+    rating_comment TEXT,
+    rating_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (rating_user_id) REFERENCES users(user_id),
+    FOREIGN KEY (rating_menu_id) REFERENCES menu_items(menu_id)
+);
+
+-- 6️⃣ TABLE BOOKING
+CREATE TABLE table_booking (
+    booking_id SERIAL PRIMARY KEY,
+    booking_user_id INT,
+    booking_table_number INT,
+    booking_date DATE,
+    booking_time TIME,
+    booking_status VARCHAR(20),
+    FOREIGN KEY (booking_user_id) REFERENCES users(user_id)
+);
+
+-- 7️⃣ ORDERS TABLE
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    order_user_id INT,
+    order_total_price DECIMAL(10,2),
+    order_service_type VARCHAR(20),
+    order_payment_method VARCHAR(20),
+    order_payment_status VARCHAR(20),
+    order_status VARCHAR(20),
+    order_delivery_id INT,
+    order_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_user_id) REFERENCES users(user_id)
+);
+
+-- 8️⃣ ORDER ITEMS TABLE
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_item_order_id INT,
+    order_item_menu_id INT,
+    order_item_quantity INT,
+    order_item_price DECIMAL(10,2),
+    FOREIGN KEY (order_item_order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (order_item_menu_id) REFERENCES menu_items(menu_id)
+);
+
+-- 9️⃣ DELIVERY TABLE
+CREATE TABLE delivery (
+    delivery_id SERIAL PRIMARY KEY,
+    delivery_order_id INT,
+    delivery_address TEXT,
+    delivery_fee DECIMAL(10,2),
+    delivery_distance_km DECIMAL(5,2),
+    delivery_status VARCHAR(20),
+    delivery_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (delivery_order_id) REFERENCES orders(order_id)
+);
+
+-- 🔟 PAYMENTS TABLE
+CREATE TABLE payments (
+    payment_id SERIAL PRIMARY KEY,
+    payment_order_id INT,
+    payment_method VARCHAR(20),
+    payment_amount DECIMAL(10,2),
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_verified_by_admin_id INT,
+    payment_status VARCHAR(20),
+    FOREIGN KEY (payment_order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (payment_verified_by_admin_id) REFERENCES users(user_id)
+);
