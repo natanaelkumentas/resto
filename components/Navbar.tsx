@@ -23,14 +23,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           
           {/* LOGO */}
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Link href={"/"} className="flex items-center gap-2 cursor-pointer">
             <div className="w-10 h-10 bg-linear-to-br from-[#FF7A00] to-[#FF5722] rounded-xl flex items-center justify-center">
               <span className="text-white text-xl">🍜</span>
             </div>
             <h1 className="hidden md:block text-[#FF7A00] text-lg font-semibold">
               Rumah Makan
             </h1>
-          </div>
+          </Link>
 
           {/* DESKTOP NAVIGATION */}
           <nav className="hidden md:flex items-center gap-6">
@@ -47,12 +47,12 @@ export default function Navbar() {
 
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3 md:gap-4">
-            <div className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+            <Link href={"/cart"} className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
               <LuShoppingCart className="w-5 h-5 text-gray-600" />
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#FF7A00] text-white rounded-full flex items-center justify-center text-xs">
                 1
               </span>
-            </div>
+            </Link>
 
             <Link
               href="/profile"

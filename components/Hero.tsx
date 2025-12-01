@@ -9,10 +9,8 @@ export default function Hero() {
 
   return (
     <section className="w-full h-screen px-6 md:px-50 py-20 bg-base/10 flex flex-col md:flex-row items-center justify-between gap-10 ">
-
       {/* LEFT */}
       <div className="max-w-xl space-y-5">
-
         {/* BADGE */}
         <div className="flex items-center gap-2 bg-white px-4 py-1 rounded-full shadow-sm border border-gray-200 w-fit">
           <FaStar className="text-[#FF7A00]" />
@@ -20,7 +18,7 @@ export default function Hero() {
             Authentic Indonesian Cuisine
           </span>
         </div>
-
+        
         {/* TITLE */}
         <h1 className="text-4xl md:text-5xl font-bold text-black leading-tight">
           Delicious Food <br />
@@ -71,7 +69,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
