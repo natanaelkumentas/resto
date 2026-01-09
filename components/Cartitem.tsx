@@ -34,22 +34,22 @@ export function CartItem({ id, image, name, description, price, quantity, onQuan
             onClick={() => onQuantityChange(id, Math.max(1, quantity - 1))}
             className="rounded border border-border p-1 hover:bg-muted"
           >
-            <MdRemove className="h-4 w-4" /> a
+            <MdRemove className="h-4 w-4" />
           </button>
           <span className="w-8 text-center font-medium">{quantity}</span>
           <button
             onClick={() => onQuantityChange(id, quantity + 1)}
             className="rounded border border-border p-1 hover:bg-muted"
           >
-            <MdAdd className="h-4 w-4" /> a
+            <MdAdd className="h-4 w-4" />
           </button>
         </div>
       </div>
       <div className="flex flex-col items-end justify-between">
         <button onClick={() => onRemove(id)} className="text-red-500 hover:text-red-700">
-          <MdDeleteOutline className="h-5 w-5" /> a
+          <MdDeleteOutline className="h-5 w-5" />
         </button>
-        <span className="text-lg font-bold text-[#FF8C00]">Rp {(price * quantity).toLocaleString("id-ID")}</span>
+        <span className="text-lg font-bold text-orange-500">Rp {(price * quantity).toLocaleString("id-ID")}</span>
       </div>
     </div>
   )

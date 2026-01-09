@@ -1,5 +1,10 @@
+"use client"
+
 import { FiStar } from "react-icons/fi";
+import { MdAddShoppingCart } from "react-icons/md";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
+import { useState } from "react";
 
 interface MenuItem {
     id: number;
@@ -19,12 +24,26 @@ interface FoodCardProps {
 }
 
 export function FoodCard({ item, onViewDetails }: FoodCardProps) {
+    const { addToCart } = useCart();
+    const [isAdding, setIsAdding] = useState(false);
 
-    
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsAdding(true);
+        addToCart({
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            image: item.image,
+        });
+        setTimeout(() => setIsAdding(false), 500);
+    };
+
     return (
         <div className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition cursor-pointer group flex flex-col">
             {/* IMAGE */}
-            
+
             <div className="relative aspect-4/3 overflow-hidden">
                 <Image
                     src={item.image}
@@ -64,15 +83,26 @@ export function FoodCard({ item, onViewDetails }: FoodCardProps) {
                 </div>
             </div>
 
-            {/* FOOTER BUTTON */}
-            <div className="p-4 pt-0">
+            {/* FOOTER BUTTONS */}
+            <div className="p-4 pt-0 flex gap-2">
                 <button
                     onClick={() => onViewDetails(item.id)}
-                    className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition"
+                    className="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition"
                 >
                     View Details
+                </button>
+                <button
+                    onClick={handleAddToCart}
+                    className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition ${isAdding
+                            ? "bg-green-500 text-white"
+                            : "bg-orange-500 text-white hover:bg-orange-600"
+                        }`}
+                >
+                    <MdAddShoppingCart className="w-5 h-5" />
+                    {isAdding ? "Added!" : "Add"}
                 </button>
             </div>
         </div>
     );
 }
+
